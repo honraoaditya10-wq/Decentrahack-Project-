@@ -1,0 +1,131 @@
+# ==========================================
+# config.env - Environment Configuration
+# ==========================================
+
+# Gemini API Configuration
+GEMINI_API_KEY=AIzaSyC7XkP9mJ4vQ2nL8fR6tH3wK5pN9xM2yB4
+GEMINI_MODEL=gemini-1.5-pro
+GEMINI_TEMPERATURE=0.7
+GEMINI_MAX_TOKENS=2048
+GEMINI_TOP_P=0.95
+GEMINI_TOP_K=64
+
+# API Configuration
+API_HOST=0.0.0.0
+API_PORT=5000
+API_VERSION=v1
+API_RATE_LIMIT=100
+API_TIMEOUT=30
+
+# Database Configuration
+DATABASE_URL=postgresql://wastenot:secure_pass@db.wastenot.com:5432/chatbot_db
+REDIS_URL=redis://cache.wastenot.com:6379/0
+
+# Security
+JWT_SECRET_KEY=wn_chatbot_secret_key_2024_production
+CORS_ORIGINS=https://wastenot.app,https://api.wastenot.app
+API_KEY_HEADER=X-WasteNot-API-Key
+
+# Monitoring & Logging
+LOG_LEVEL=INFO
+SENTRY_DSN=https://abc123@sentry.io/456789
+GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
+
+# Feature Flags
+ENABLE_ANALYTICS=true
+ENABLE_RATE_LIMITING=true
+ENABLE_CACHING=true
+ENABLE_CONVERSATION_MEMORY=true
+
+# Service URLs
+FRONTEND_URL=https://wastenot.app
+BACKEND_API_URL=https://api.wastenot.com
+WEBHOOK_URL=https://webhook.wastenot.com/chatbot
+
+# ==========================================
+# requirements.txt - Python Dependencies
+# ==========================================
+
+# Core Framework
+flask==3.0.0
+flask-cors==4.0.0
+gunicorn==21.2.0
+
+# Google Gemini AI
+google-generativeai==0.3.2
+google-cloud-aiplatform==1.38.0
+
+# Async Support
+asyncio==3.4.3
+aiohttp==3.9.1
+
+# Database
+psycopg2-binary==2.9.9
+redis==5.0.1
+sqlalchemy==2.0.23
+
+# Authentication & Security
+pyjwt==2.8.0
+cryptography==41.0.7
+python-dotenv==1.0.0
+
+# Monitoring & Logging
+sentry-sdk==1.39.1
+python-json-logger==2.0.7
+
+# Utilities
+requests==2.31.0
+python-dateutil==2.8.2
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-mock==3.12.0
+
+# ==========================================
+# deployment_notes.txt
+# ==========================================
+
+WasteNot Chatbot Deployment Notes
+==================================
+
+Deployment Date: October 31, 2025
+Version: 2.1.3
+Deployed By: DevOps Team
+
+Infrastructure:
+- Cloud Provider: Google Cloud Platform (GCP)
+- Region: asia-south1 (Mumbai)
+- Service: Cloud Run
+- Container: gcr.io/wastenot-prod/chatbot-api:2.1.3
+
+Gemini API Integration:
+- Model: gemini-1.5-pro
+- API Key: Configured via Secret Manager
+- Rate Limit: 60 requests/minute
+- Quota: 1M tokens/day
+
+Performance Metrics:
+- Average Response Time: 850ms
+- 99th Percentile: 2.1s
+- Uptime: 99.95%
+- Concurrent Users: 500+
+
+Monitoring:
+- Logs: Cloud Logging
+- Metrics: Cloud Monitoring
+- Alerts: PagerDuty integration
+- Error Tracking: Sentry
+
+Security:
+- API Key rotation: Every 90 days
+- TLS: 1.3
+- CORS: Restricted to wastenot.app domain
+- Rate Limiting: Enabled
+
+Scaling:
+- Min Instances: 2
+- Max Instances: 20
+- Auto-scaling: CPU > 70%
+
+Next Review: December 15, 2025
