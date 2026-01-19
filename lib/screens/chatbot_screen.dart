@@ -6,7 +6,7 @@ class ChatBotScreen extends StatefulWidget {
   @override
   State<ChatBotScreen> createState() => _ChatBotScreenState();
 }
-
+ 
 class _ChatBotScreenState extends State<ChatBotScreen> {
   final TextEditingController _messageController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
