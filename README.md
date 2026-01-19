@@ -1,16 +1,151 @@
-# waste_not_app
+Waste Not Project
+About the Project
 
-A new Flutter project.
+Waste Not is a project made to reduce food waste by connecting people who have extra food with people or organizations who need it.
 
-## Getting Started
+The main goal of Waste Not is:
 
-This project is a starting point for a Flutter application.
+Reduce food wastage
 
-A few resources to get you started if this is your first Flutter project:
+Help needy people get food
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Support NGOs, hostels, and shelters
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Create awareness about responsible food usage
+
+What Waste Not Does
+
+Waste Not allows:
+
+Hotels, restaurants, homes, and events to post extra food
+
+NGOs or volunteers to see available food nearby
+
+Easy communication between donor and receiver
+
+Tracking of food donation history
+
+Main Features
+
+User registration and login
+
+Food donation posting
+
+Location-based food listing
+
+Request and accept food
+
+NGO and volunteer support
+
+Admin panel to manage users and data
+
+How to Run Waste Not Project After Download
+
+Follow these steps to run the project on your computer.
+
+Step 1: Download the Project
+
+You can get the project by:
+
+Downloading ZIP from GitHub and extracting it
+or
+
+Using git command:
+
+git clone <project-repo-link>
+
+
+Then go into the project folder:
+
+cd waste-not
+
+Step 2: Install Required Software
+
+Make sure you have:
+
+Node.js installed
+
+npm (comes with Node.js)
+
+MongoDB or any database used in your project
+
+Check versions:
+
+node -v
+npm -v
+
+Step 3: Install Dependencies
+
+Run this in the project folder:
+
+npm install
+
+
+If there is a frontend and backend folder:
+
+cd backend
+npm install
+cd ../frontend
+npm install
+
+Step 4: Setup Environment File
+
+Create a file named .env in backend folder and add:
+
+PORT=5000
+DB_URL=your_database_url
+JWT_SECRET=your_secret_key
+
+
+Change values according to your setup.
+
+Step 5: Start Backend Server
+cd backend
+npm start
+
+
+or
+
+npm run dev
+
+
+Server will start on:
+
+http://localhost:5000
+
+Step 6: Start Frontend
+
+Open new terminal:
+
+cd frontend
+npm start
+
+
+Frontend will open on:
+
+http://localhost:3000
+
+Step 7: Open in Browser
+
+Go to:
+
+http://localhost:3000
+
+
+Now you can:
+
+Register user
+
+Add food
+
+Request food
+
+Test full system
+
+Common Problems
+
+If error comes: run npm install again
+
+If database not connecting: check .env file
+
+If port busy: change port number in .env
