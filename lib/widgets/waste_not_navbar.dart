@@ -1,58 +1,73 @@
 import 'package:flutter/material.dart';
 
 class WasteNotNavBar extends StatelessWidget {
-  final int selectedIndex;
-  final ValueChanged<int> onItemTapped;
+  final int currentIndex;
+  final ValueChanged<int> onTap;
 
   const WasteNotNavBar({
-    super.key,
-    required this.selectedIndex,
-    required this.onItemTapped,
-  });
+    Key? key,
+    required this.currentIndex,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      decoration: const BoxDecoration(
-        color: Color(0xFFF2E1FA),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24),
-          topRight: Radius.circular(24),
+      padding: const EdgeInsets.only(top: 12, bottom: 12),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF2E1FA),
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(24),
         ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _buildNavItem(Icons.home_outlined, "Home", 0),
-          _buildNavItem(Icons.volunteer_activism, "Donation", 1),
-          _buildNavItem(Icons.notifications_none, "Notification", 2),
-          _buildNavItem(Icons.person_outline, "Profile", 3),
-        ],
+        children: List.generate(
+          _navItems.length,
+          (index) => _NavItem(
+            icon: _navItems[index].icon,
+            label: _navItems[index].label,
+            isActive: currentIndex == index,
+            onPressed: () => onTap(index),
+          ),
+        ),
       ),
     );
   }
+}
 
-  Widget _buildNavItem(IconData icon, String label, int index) {
-    final isSelected = selectedIndex == index;
+class _NavItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final bool isActive;
+  final VoidCallback onPressed;
 
+  const _NavItem({
+    required this.icon,
+    required this.label,
+    required this.isActive,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onItemTapped(index),
+      onTap: onPressed,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.white : Colors.transparent,
+          color: isActive ? Colors.white : Colors.transparent,
           borderRadius: BorderRadius.circular(30),
         ),
         child: Row(
           children: [
             Icon(
               icon,
-              color: Colors.deepPurple,
               size: 28,
+              color: Colors.deepPurple,
             ),
-            if (isSelected) ...[
+            if (isActive) ...[
               const SizedBox(width: 6),
               Text(
                 label,
@@ -61,10 +76,24 @@ class WasteNotNavBar extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-            ]
+            ],
           ],
         ),
       ),
     );
   }
 }
+
+class _NavItemData {
+  final IconData icon;
+  final String label;
+
+  const _NavItemData(this.icon, this.label);
+}
+
+const List<_NavItemData> _navItems = [
+  _NavItemData(Icons.home_outlined, 'Home'),
+  _NavItemData(Icons.volunteer_activism, 'Donation'),
+  _NavItemData(Icons.notifications_none, 'Notification'),
+  _NavItemData(Icons.person_outline, 'Profile'),
+];
