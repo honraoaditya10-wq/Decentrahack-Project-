@@ -7,7 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 class DonationGuidelinesScreen extends StatelessWidget {
   final List<Map<String, dynamic>> guidelines = [
-    // FOOD SECTION
+  
     {
       "category": "Food Safety",
       "icon": Icons.health_and_safety,

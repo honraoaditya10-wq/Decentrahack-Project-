@@ -14,9 +14,9 @@ class MainScaffold extends StatefulWidget {
 }
 
 class _MainScaffoldState extends State<MainScaffold> {
-  // 0 = home, 1 = donations history, 2 = notifications, 3 = profile
+  
   int _selectedIndex = 0;
-  // For donation screens from home page donation options (-1 means none, 0=food, 1=clothes, 2=books)
+
   int _donationPage = -1;
 
   void _onNavTap(int index) {
@@ -28,7 +28,7 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   void _openDonationScreen(int screenIndex) {
     setState(() {
-      _selectedIndex = 0; // always home tab for donation forms
+      _selectedIndex = 0; 
       _donationPage = screenIndex;
     });
   }
@@ -40,7 +40,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   }
 
   Widget get _body {
-    // Donation screens from home page
+
     if (_selectedIndex == 0 && _donationPage == 0) {
       return DonateFoodScreen(
         selectedIndex: 0,
@@ -59,23 +59,20 @@ class _MainScaffoldState extends State<MainScaffold> {
         onNavTap: (_) => _backToHomeFromDonation(),
       );
     }
-    // Home tab
+    
     if (_selectedIndex == 0) {
       return HomePage(onDonationOptionTap: _openDonationScreen);
     }
-    // Donations history tab: USE YOUR DONATION HISTORY SCREEN!
+    
     if (_selectedIndex == 1) {
-      return const DonationHistoryScreen(); // <-- THIS IS THE KEY CHANGE!
+      return const DonationHistoryScreen(); 
     }
-    // Notification tab
     if (_selectedIndex == 2) {
       return const NotificationScreen();
     }
-    // Profile tab
     if (_selectedIndex == 3) {
       return const ProfileScreen();
     }
-    // Fallback
     return Center(child: Text("Tab $_selectedIndex"));
   }
 
@@ -91,7 +88,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   }
 }
 
-/// --- Shared Bottom Navigation Bar ---
+
 class WasteNotNavBar extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onItemTapped;
@@ -116,8 +113,7 @@ class WasteNotNavBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _buildNavItem(Icons.home_outlined, "Home", 0),
-          _buildNavItem(Icons.volunteer_activism, "Donations", 1), // Label changed to "Donations"
-          _buildNavItem(Icons.notifications_none, "Notification", 2),
+          _buildNavItem(Icons.volunteer_activism, "Donations", 1), 
           _buildNavItem(Icons.person_outline, "Profile", 3),
         ],
       ),
