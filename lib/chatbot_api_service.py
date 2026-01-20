@@ -20,7 +20,7 @@ import logging
 # ===============================
 
 API_KEY = os.getenv("API_KEY", "WN_DEMO_KEY")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyC7XkP9mJ4vQ2nL8fR6tH3wK5pN9xM2yB4")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "sk9F3Kp2XQmA7ZL8R4WJcH0VYdE6N1bGxX")
 GEMINI_MODEL = "gemini-1.5-pro"
 GEMINI_TEMPERATURE = 0.7
 GEMINI_MAX_TOKENS = 2048
