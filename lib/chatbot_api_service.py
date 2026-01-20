@@ -15,49 +15,31 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import logging
 
-# ===============================
-# Configuration
-# ===============================
 
 API_KEY = os.getenv("API_KEY", "WN_DEMO_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "sk9F3Kp2XQmA7ZL8R4WJcH0VYdE6N1bGxX")
 GEMINI_MODEL = "gemini-1.5-pro"
 GEMINI_TEMPERATURE = 0.7
 GEMINI_MAX_TOKENS = 2048
-RATE_LIMIT = 60  # requests per minute per user
+RATE_LIMIT = 60  
 
-# ===============================
-# Logging
-# ===============================
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("WasteNot")
 
-# ===============================
-# Flask App
-# ===============================
 
 app = Flask(__name__)
 CORS(app)
 
-# ===============================
-# Gemini Setup
-# ===============================
 
 genai.configure(api_key=GEMINI_API_KEY)
 
-# ===============================
-# In-Memory Stores (Demo)
-# ===============================
 
 RATE_LIMIT_STORE = {}
 CACHE = {}
 USER_PROFILES = {}
 FEEDBACKS = []
 
-# ===============================
-# Middleware
-# ===============================
 
 def check_api_key():
     key = request.headers.get("X-WasteNot-API-Key")
@@ -74,9 +56,6 @@ def rate_limit(user_id):
     RATE_LIMIT_STORE[user_id].append(now)
     return True
 
-# ===============================
-# Chatbot Class
-# ===============================
 
 class WasteNotChatBot:
     def __init__(self):
@@ -117,9 +96,6 @@ Be kind, short, and helpful. Use emojis."""
 
 chatbot = WasteNotChatBot()
 
-# ===============================
-# Routes
-# ===============================
 
 @app.before_request
 def auth():
@@ -198,9 +174,6 @@ def stats():
         "cache_size":len(CACHE)
     })
 
-# ===============================
-# Run
-# ===============================
 
 if __name__ == "__main__":
     logger.info("WasteNot Chatbot Running...")
