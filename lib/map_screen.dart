@@ -29,21 +29,21 @@ class _MapScreenState extends State<MapScreen> {
       _markers.addAll({
         const Marker(
           markerId: MarkerId('ngo1'),
-          position: LatLng(18.5204, 73.8567), // Pune
+          position: LatLng(18.5204, 73.8567), 
           infoWindow: InfoWindow(
             title: 'Food for All NGO',
             snippet: 'Available for pickup 9 AM - 6 PM',
           ),
-          // Using default marker - will appear as red pin
+        
         ),
         const Marker(
           markerId: MarkerId('ngo2'),
-          position: LatLng(18.5314, 73.8446), // Another location in Pune
+          position: LatLng(18.5314, 73.8446), 
           infoWindow: InfoWindow(
             title: 'Hope Foundation',
             snippet: 'Accepting donations 24/7',
           ),
-          // Using default marker - will appear as red pin
+          
         ),
         const Marker(
           markerId: MarkerId('ngo3'),
@@ -52,7 +52,7 @@ class _MapScreenState extends State<MapScreen> {
             title: 'Helping Hands',
             snippet: 'Specializes in cooked food pickup',
           ),
-          // Using default marker - will appear as red pin
+        
         ),
       });
     });
@@ -60,7 +60,7 @@ class _MapScreenState extends State<MapScreen> {
 
   Future<void> _getCurrentLocation() async {
     try {
-      // Check if location services are enabled
+      
       bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         setState(() {
@@ -71,7 +71,7 @@ class _MapScreenState extends State<MapScreen> {
         return;
       }
 
-      // Check location permissions
+ 
       LocationPermission permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
@@ -93,7 +93,7 @@ class _MapScreenState extends State<MapScreen> {
         return;
       }
 
-      // Get current position
+    
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
@@ -104,7 +104,7 @@ class _MapScreenState extends State<MapScreen> {
         _locationStatus = "Location found";
       });
 
-      // Add current location marker
+      
       setState(() {
         _markers.add(
           Marker(
@@ -114,7 +114,7 @@ class _MapScreenState extends State<MapScreen> {
               title: 'Your Location',
               snippet: 'Current position',
             ),
-            // Using default red marker for current location
+           
           ),
         );
       });
@@ -292,7 +292,7 @@ class _MapScreenState extends State<MapScreen> {
                   trafficEnabled: false,
                   buildingsEnabled: true,
                   onTap: (LatLng position) {
-                    // Handle map tap if needed
+                  
                     print('Map tapped at: ${position.latitude}, ${position.longitude}');
                   },
                 ),
@@ -380,11 +380,5 @@ class _MapScreenState extends State<MapScreen> {
             )
           : null,
     );
-  }
-
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
   }
 }
